@@ -1,0 +1,83 @@
+{
+    "dataset_root_dir": "/media/zjw/951FB31A9E1EB7E0/dateSet/MSA-DataSets",
+    "model": {
+        "name": "UMRMv3",
+        "d_model": 128,
+        "num_layers": 2,
+        "d_state": 64,
+        "expand": 2,
+        "headdim": 32,
+        "ngroups": 1,
+        "rope_fraction": 0.5,
+        "is_mimo": false,
+        "mimo_rank": 4,
+        "chunk_size": 64,
+        "is_outproj_norm": false,
+        "dropout": 0.5,
+        "pool_type": "mean",
+        "v_self_ratio": 0.0,
+        "use_gcmn_gate": false,
+        "token_missing_rate": 0.3,
+        "token_missing_rate_max": 0.6,
+        "modality_missing_rate": 0.3,
+        "use_bert": true,
+        "bert_pretrained": "bert-base-uncased",
+        "bert_finetune": true,
+        "ism_depth": 3,
+        "ism_d_state": 32,
+        "ism_mixer_type": "bimamba",
+        "use_text_recon": false,
+        "use_text_injection": false,
+        "inj_temperature": 0.1,
+        "use_aux_cls": false,
+        "aux_cls_weight": 0.3,
+        "use_bi_direction": false
+    },
+    "training": {
+        "use_curriculum": true,
+        "use_contrastive_loss": true,
+        "contrastive_loss_weight": 0.1,
+        "text_recon_weight": 0.5,
+        "warmup_epochs": 5,
+        "patience": 15,
+        "grad_clip": 0.1,
+        "bert_lr": 1e-5
+    },
+    "datasets": {
+        "MOSI": {
+            "task_type": "regression",
+            "num_classes": 1,
+            "featurePath": "CMU-MOSI/Processed/unaligned_50.pkl",
+            "feature_dims": [768, 5, 20],
+            "seq_lens": [50, 50, 50],
+            "batch_size": 16,
+            "learning_rate": 3e-4,
+            "weight_decay": 0.0001,
+            "epochs": 120,
+            "KeyEval": "MAE"
+        },
+        "MOSEI": {
+            "task_type": "regression",
+            "num_classes": 1,
+            "featurePath": "CMU-MOSEI/Processed/unaligned_50.pkl",
+            "feature_dims": [768, 74, 35],
+            "seq_lens": [50, 50, 50],
+            "batch_size": 16,
+            "learning_rate": 1e-4,
+            "weight_decay": 0.0001,
+            "epochs": 30,
+            "KeyEval": "MAE"
+        },
+        "IEMOCAP": {
+            "task_type": "classification",
+            "num_classes": 4,
+            "featurePath": "IEMOCAP/Processed/iemocap_unaligned.pkl",
+            "feature_dims": [768, 100, 342],
+            "seq_lens": [50, 1500, 500],
+            "batch_size": 16,
+            "learning_rate": 1e-4,
+            "epochs": 50,
+            "KeyEval": "F1"
+        }
+    }
+}

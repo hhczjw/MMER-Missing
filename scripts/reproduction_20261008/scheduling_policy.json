@@ -1,0 +1,12 @@
+{
+  "execution_gate": "complete_or_explicitly_paused_after_current_success",
+  "authority": "Human request: 等GPU1和GPU0的当前任务结束后，暂停work",
+  "supersedes": "2026-10-09用户要求启动基线重训；允许在已验证成功暂停边界进入资源核验，不恢复原消融队列",
+  "pause_monitor": "/home/zjw/桌面/MMER-Missing/results/reproduction_20261008/pause_after_current_04/status.json",
+  "baseline_launch_on_pause": true,
+  "baseline_launch_authority": "Human requests 2026-10-09: 启动基线重训；是的，除了研究一的，研究二的也进行最优结果的重训。明确同意列明未知项的候选",
+  "environment_review_required": true,
+  "priority": "先p0B seed2024在历史GPU1从头重训；启动前仍须通过环境审查、源码/输入指纹、GPU空闲及排他锁验证",
+  "unresolved_environment_authorization": "已获明确候选授权；未知项保留，不宣称历史环境完全一致。environment_review=user_authorized_candidate",
+  "remaining_ablations": "保留全部剩余计划与历史结果；暂停后不恢复、不迁移GPU、不启动后续任务"
+}

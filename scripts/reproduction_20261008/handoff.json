@@ -1,0 +1,326 @@
+{
+  "r2_token_slow_ablations_20261010": {
+    "authority": "Human: 用满课程的方式跑一下seed42与seed45的消融实验。Confirmed 是的 to slowcurriculum, Token only on GPU0, GPU1R1 continues",
+    "state": "Queue726445 actually launched2026-10-10T18:14:37+08; initial smoke worker726458 on physicalGPU0; 15settings*seeds42/45=30jobs. All15 onebatch train+10rate partial-validation smoke checks automatically precede formal60epoch training. Read live status; do not duplicate launch",
+    "runner": "scripts/research2_slow_ablations_20261010/run.py",
+    "status": "results/research2_token_slow_ablations_20261010/status.json",
+    "plan": "results/research2_token_slow_ablations_20261010/plan.json",
+    "log": "results/reproduction_20261010/r2_slow_ablation_queue.log",
+    "protocol": "Same frozen native runtime/model/data/optimizer as selected slower_curriculum optimization. cap=.3 E1-5,.5 E6-10,.7 E11-15,.9 E16-60; policy14 fixed .9 remains explicit curriculum ablation. 60epochs, no earlystop; batch8/eval16 FP32,lr3e-4,LoRA8/16; validationToken10Acc7 tieMAE masks20261006; selectedcheckpoint final10rates masks20261005",
+    "preservation": "Fresh full-control00 separately trained bothseeds, no old checkpoint resume or old fastcurriculum score mixing; all oldresults preserved. Checkpoints stay new local folders, disk guard40GiB. No GPU1lock/process/config touched",
+    "evidence": "Paired full-model preintervention state hashes must match control same seed. Perjob config/history/selection/test/predictions stored; aggregate records mean/sampleSD and same-seed paired deltas; metric means are NOT ensembles",
+    "boundary": "Approved current coupled_mamba_3 candidate, not exact historical dependency proof. Two-seed matched experiment, no test recipe/seed selection or automatic significance claim. Worker error stops queue without retry or batch/precision modifications"
+  },
+  "r1_seed2024_skip_and_r2_selected_test_20261010": {
+    "authority": "Human: 遇到NAN后直接跳过。直接跑seed2024就行，我们就用seed2024进行对比。",
+    "r1": {
+      "state": "GPU1 controller725380 worker725463 actually launched R1-05_seed2024 at2026-10-10T18:04:37+08:00; seed2024 ONLY, eleven settings, five completed preserved, six remaining. Do not schedule42/1111",
+      "controller": "scripts/r1_skip_20261010/run_queue.py",
+      "status": "results/r1_native_aligned_ablations_20261009/run_01/skip_20261010_01/status.json",
+      "log": "results/reproduction_20261010/r1_seed2024_skip_queue_02.log",
+      "preservation": "Old failed R1-05 attempt and exact-batch/RNG/model/optimizer failure_snapshot preserved in skip_20261010_01/failed_attempts; original33job plan unchanged, new eleven-job seed2024 plan separate",
+      "skip_policy": "Pre-update nonfinite forward/backward batches skipped; clear gradients, NO optimizer/scheduler/global-step update; count every skip. Post-update bad parameters remain fatal. Three CPU tests passed: exact finite path, bad backward skip then train, bad forward skip then train",
+      "boundary": "Nonzero skipped batches alter training trajectory/successful-update count; report counts and do not claim strict unchanged historical protocol. Exact dated historical source/environment remains approved candidate, not proven identical",
+      "prelaunch_error": "Initial controller725135 exited SyntaxError before main; no experiment started. One extra parenthesis fixed, compiled and tested before actual controller725380 launch. Do not relaunch while live"
+    },
+    "r2": {
+      "state": "Selected-test GPU0 run COMPLETE at2026-10-10T18:00:01+08:00; control and validation winner slower_curriculum each fixedseeds42/45 tested with original ten-rate mask20261005 evalbatch16",
+      "summary": "results/research2_token_optimization_20261010/selected_test_20261010/summary.json",
+      "selection": "Recipe and checkpoints selected only by validation Acc7, before test; two fixedseeds, equal-weight prediction ensembles distinct from metric mean. No test tuning or seed reselection",
+      "winner_prediction_ensemble": {"MAE": 0.9881865978240967, "Corr": 0.5942327266348582, "Acc2_nonzero": 0.7408536585365855, "F1_nonzero": 0.7384373953572062, "Acc7": 0.35131195335276966},
+      "control_prediction_ensemble": {"MAE": 1.0216200411319734, "Corr": 0.5790292840848825, "Acc2_nonzero": 0.735670731707317, "F1_nonzero": 0.7345410738552729, "Acc7": 0.3365889212827988},
+      "boundary": "Token optimization only; two-seed development comparison is not universal module-effect proof or a new Full/Modality result"
+    }
+  },
+  "r2_optimization_trash_permanent_delete_20261010": {
+    "authority": "Latest human: 哪些是垃圾目录，把相关内容都删除了。",
+    "state": "complete; BOTH exact research2_token_optimization_20261010_gpu0_restart trash directories permanently deleted,27files/4352985691 logicalbytes (~4.05GiB). Exact targets verified not symlinks and no active process cwd/fd references before deletion",
+    "targets": ["/home/zjw/桌面/MMER-Missing/.trash/research2_token_optimization_20261010_gpu0_restart", "/media/zjw/951FB31A9E1EB7E0/MMER-Missing-checkpoints/.trash/research2_token_optimization_20261010_gpu0_restart"],
+    "recovery": "No cleanup recovery copies remain. Earlier recoverable-removal entry below historical only, do not try restoring its trash paths",
+    "preserved": "Fresh GPU0 research2 optimization outputs, original runner/adapter/source, GPU1 R1 guarded native ablations and all other best/ablation records. Only small administrative migration/deletion receipts kept, not old experimental payloads",
+    "receipt": "results/reproduction_20261010/r2_gpu0_restart.json"
+  },
+  "r2_optimization_gpu0_restart_20261010": {
+    "authority": "Latest human clarification: 删除研究二的优化的所有结果，将其重新迁移到GPU0上重新执行。Overrides earlier control-only deletion interpretation and GPU1 Token-optimization waiting arrangement",
+    "deletion": "Removed ALL old optimization result payloads (control42, partiallower_lr42, four smoke outputs, summary/status/logs, local and HDD archived checkpoint copies) via same-filesystem recoverable moves. No original/ablation/best result outside this specific optimization root removed. Receipt results/reproduction_20261010/r2_gpu0_restart.json; .trash/research2_token_optimization_20261010_gpu0_restart and HDD counterpart remain recoverable, not permanent erasure",
+    "old_process": "Verified original GPU1 optimization PID676054 independent process; PID-safe SIGTERM sent with open_pid_handle, then process exited and GPU1 lock released. Do not restart old GPU1 optimization or use old trash results in new summary",
+    "research2_current": "Fresh GPU0 queue controller695677; all4 initialsmoke checks complete/pass and smoke worker695678 exited. Formal full8 optimization actually started worker695834, currentcontrol_seed42, physicalGPU0 UUID GPU-07abbe75-7a55-4623-70aa-a9572c83957e confirmed. Source original unchanged SHA5bef68a26b8f8ad383c428df967d42b2f92f835441de912e813c130dd205a7bc; independent adapter restart_optimization_gpu0_20261010.py changes ONLY five AST constants for GPU lock/device/index labels, SHA32f1b2b28a054bb83f84c3bae5cb4d6842727f6752925ce715c6ee5a9ec88134",
+    "research2_protocol": "Fresh allfour smoke checks then entire fourcandidates x seeds42/45 (8jobs) x60epochs from scratch, original pretrained only. Original loop/loss/batch/precision/LR/curriculum/validation selection unchanged by migration. No old checkpoint/optimizer/results reused. Validate-only development with Token10 meanAcc7/tieMAE; no test loader, no confirmatory component claim. Same existing software environment, physicalGPU explicitlychanged by user, not same-device reproducibility",
+    "research2_status": "results/research2_token_optimization_20261010/gpu0_restart_status.json orchestrator; smoke.json and later status.json native worker; gpu0_queue.log/gpu0_smoke.log/gpu0_run.log. No duplicate launch. A smoke/train failure stops, no automatic batch/LR/precision fallback or retry",
+    "research1_current": "GPU1 recovery automatically acquired existing lock after original R2 stopped; all16-step small-model native/guard GPU equality checks passed. START_GUARDED R1-03_seed2024 at11:26:11+08, controller676376 worker695359. Epoch1 complete, epoch2 inprogress600 finite checkedupdates at audit; completed3 original jobs preserved, failed03 archived recoverably underrepair_20261010_02/failed_attempts. First numerical fault origin still unresolved; safety guard prevents bad updates and captures any new anomaly. Do not declare originating fault solved",
+    "scheduling": "GPU0 research2 optimization, GPU1 research1 guarded native-aligned ablations, independent existing physicalGPU locks. Earlier r1 waiting record below historical only. Do not migrate, stop or change frozen R1 helpers while running. GPU0 R2 old99ablation/PPT monitor already completed/paused and remains untouched"
+  },
+  "r1_guarded_recovery_20261010": {
+    "authority": "Latest human: 进行定位修复并且恢复GPU1消融队列。",
+    "verified_failure": "Native aligned queue failed after R1-03_seed2024 (remove both GLCE branches) produced nonfinite-loss skipped batches, first observed epoch51 batch221. First3 R1-00/01/02_seed2024 valid and unchanged. Original controller589375 exited. Originating fault not established by old logs",
+    "repair": "New independent scripts/r1_repair_20261010 safety wrapper: native error_if_nonfinite=True checks gradient norm BEFORE scaling/update; finite normal path unchanged. Stop on nonfinite forward loss/logits or parameter update. Save exact bad-batch inputs, pre-forward RNG, weights, gradients, optimizer/scheduler and diagnostic JSON before abort; no hidden skip/retry/precision/learning-rate/batch/optimizer/backward substitution. This prevents propagation, not yet proved to fix the originating numerical cause",
+    "tests": "4 explicit CPU repair tests and13 original CPU tests passed. Finite multi-batch/multi-epoch loss, parameters, optimizer, scheduler and RNG bitwise equal on CPU; injected NaN backward rejected before update. Small-model16-step GPU1/dropout parity is a required gate after device lock, not yet executed and not proof of full-model determinism",
+    "controller": "PID676376 scripts/r1_repair_20261010/resume_queue.py --recovery-name repair_20261010_02, verified alive 2026-10-10 10:11+08. CPU-only waiting_gpu1_lock; do not duplicate, terminate concurrent training, delete locks or change pinned helpers. Read live status rather than assuming this snapshot remains current",
+    "status": "results/r1_native_aligned_ablations_20261009/run_01/repair_20261010_02/status.json; parent log results/reproduction_20261009/r1_recovery_20261010_02.log. Original queue status remains historical failed until GPU1 is safely acquired and failed-attempt preservation completes",
+    "gpu_conflict": "Concurrent independent research2 Token optimization PID676054 scripts/research2_ablations/optimize_token_20261010.py --mode run started10:08:37 and holds research2_gpu1.lock. Do not interrupt or migrate it. Recovery waits for lock release and no GPU1 compute processes, then rechecks native/code/helper/environment/input/pretrained fingerprints and GPU1 UUID/driver",
+    "next": "After lock and CUDA finite-path verification, archive failed R1-03 attempt under repair_20261010_02/failed_attempts with hashes; restart R1-03 from original pretrained initialization (NOT old MMER checkpoint), then remaining30 jobs in prespecified order. Completed3 retained. Any new numerical failure captures and stops; inspect snapshot to find first producing operation before further repair/restart. Do not call this originating-fault-fixed or queue-training-started while waiting",
+    "protocol": "Same approved candidate coupled_mamba_3, physicalGPU1, expandable_segments:True, native2 all-wd AdamW groups main4e-4/text1e-5 wd1e-4, batch4 clip0.1 warmup5778/38520, M-only MultiTaskLoss, AMP/EMA/checkpointing off; original four validation checkpoints/MAE earlystop and secondaryAcc2 whole-tuple reporting preserved. No exact dated historical environment equality claim",
+    "preflight_history": "First recovery controller676011 exited before moving any original result because GPU1 lock busy; receipt repair_20261010/recovery_failure.json retained. Second controller implements CPU lock waiting; this is not a training retry or changed numerical protocol",
+    "test_environment_correction": "Initial direct repair test invocation accidentally exposed CUDA through native Trainer auto-device selection; it finished without modifying experiment artifacts (device-equality test failure). No existing training was active at the preceding inventory. CPU tests now hide CUDA before torch import and all pass. Not counted as locked GPU1 parity or CPU proof from that mistaken invocation"
+  },
+  "gpu0_ppt_delivery_complete_20261009": {
+    "state": "COMPLETE; GPU0 R2 full99 queue finished2026-10-09 23:26:07+08, controller564291 and lastworker611956 exited. Both status phases complete, all99jobs valid. CPU all99NPZ metrics, config/validation selection, same sample order and aggregate verified",
+    "review": "results/research2_ablation_review_20261009/review.json and summary.txt; all33settings, three-repeat mean/sampleSD, per-seed paired variant-minus-control differences and SD, separate completeTAV, per-combo/per-rate evidence retained. Core allGPU1; later extended pairs include GPU0 migration so not strict same-device causal claims. No test-selected seeds/weights or automatic retraining",
+    "ppt": "User original docs/中期检查_BJTU_20261006/张江伟_两项研究中期检查_北京交通大学风格.pptx updated ONLYslide22 and corresponding notes.25slides/native tables/media preserved; historicalbest and independentretrain rows unchanged, added originalsame-pipeline00 mean row. Updated99/99progress and supported conclusion. All25Artifact PNGs visually inspected, formalvalidation passed. No nativePowerPointUI claim",
+    "receipt": "results/research2_ablation_review_20261009/delivery.json; finalSHA72736c8e10ba84c26ddc0f877a1a3a2c0b815ee23d0c5be4d1cd1a16bcd817ad; pre-edit backup.ppt_gpu0_complete_20261009/build/original.pptx",
+    "automation": "gpu0-ppt PAUSED via product automation_update after successful verified original-file commit. Overrides earlier ACTIVE followup entry. Do not repeat PPT edit, recreate followup or restart R2 queue",
+    "boundary": "Modal Acc7 control33.83%, removingEnhance29.89% orKD+RCD29.40%. Token control28.38% with all three checkpointsselectedepoch2; many variants higher, cannot claim uniformlypositive stable component contributions. Historicalbest/retrain not pairedcontrol. Rootcause not established by this CPU audit",
+    "storage": "93archived receipts at audit, no deletions or interference with remaining asynchronous archive. Training success separate from archival. GPU1 newR1 native-aligned queue untouched"
+  },
+  "old_r1_permanent_delete_20261009": {
+    "authority": "Human: 旧研究一的消融实验结果直接删除就行。Overrides recoverable-trash preference for obsolete R1 outputs",
+    "state": "complete; permanently removed both validated old_r1_ablations_20261009 trash roots (~9.7GiB local and27GiB HDD). All50mapping identities verified and no active fd/cwd references. No cleanup recovery copies remain; prior trash receipt was deleted with old output",
+    "receipt": "/home/zjw/桌面/MMER-Missing/results/reproduction_20261009/old_r1_permanent_delete_20261009.json",
+    "preserved": "All historical best/native replay outputs and frozen sources/data, newGPU1R1 native-aligned queue and GPU0R2 ablations/results/PPT. Shared archiver's oldR1 status/plan/nvme receipt metadata kept only to avoid polling race; not experiment result payloads",
+    "monitor": "Both current controllers/workers and archiver verified alive after deletion. Do not attempt restoring deleted oldR1 outputs, auto-resume oldR1 or interpret its missing payloads as current failure. Earlier recoverable-removal entry is historical and its recovery paths no longer exist"
+  },
+  "old_r1_results_removal_20261009": {
+    "authority": "Human: 将之前旧的消融结果删除。Context follows research1 native-aligned ablation replacement",
+    "state": "complete; recoverable removal of50 explicit old-R1 result/checkpoint paths; overrides previous preservation instruction for these obsolete R1 outputs only",
+    "receipt": "/home/zjw/桌面/MMER-Missing/.trash/old_r1_ablations_20261009/receipt.json",
+    "local_trash": "/home/zjw/桌面/MMER-Missing/.trash/old_r1_ablations_20261009",
+    "checkpoint_trash": "/media/zjw/951FB31A9E1EB7E0/MMER-Missing-checkpoints/.trash/old_r1_ablations_20261009",
+    "scope": "Old pureR1 failed v1/v2 directories, gradient_repair train/logs/reference/smoke/failed_attempts/repair_checks/repair_check_weights/summary and NVMe staging; R1-only entries in earliest mixed R1/R2 result directory; associated R1 archived checkpoints. Same-filesystem renames, no permanent erasure and no disk-space release. Exact source/trash mapping plus inode and per-move receipt retained",
+    "safety": "Old controllers/workers confirmed exited; all old R1 NVMe receipts archived; no open target files. Shared archiver253302 still polls gradient_repair output root: keep administrative status/plan/nvme receipts/transition at original path, never move that root or stop service. Do not restore/relaunch old queue automatically",
+    "preserved": "Research2 old/current ablations and results, currentGPU0 queue, newGPU1 native-aligned R1 queue, all historical best/native replay results and frozen code/data unchanged. PPT itself not edited by cleanup. Old R1 numbers displayed in existing PPT are historical content; their source files are now in recoverable trash",
+    "monitor": "GPU0-PPT heartbeat continues unaffected. Read new R1 native-aligned output for R1 progress, not obsolete pausedR1 metadata. Do not interpret missing old tests as queue failure or restart old jobs"
+  },
+  "r1_native_aligned_ablations_20261009": {
+    "authority": "Human: 将研究内容一的消融实验配置与最优的配置进行对齐，并且进行重新消融实验训练。挂载到GPU1下面。",
+    "controller_pid": 589375,
+    "initial_worker_pid": 589477,
+    "entry": "scripts/r1_aligned_20261009/run_queue.py",
+    "output": "results/r1_native_aligned_ablations_20261009/run_01",
+    "log": "results/reproduction_20261009/r1_native_aligned_queue.log",
+    "actual_start": "2026-10-09 19:55:30+08:00 R1-00_seed2024; Token42–47 successfully complete19:47:40 and controller/worker exited; acquired ONLY results/research2_gpu1.lock, UUID/driver verified and GPU1 idle; GPU0 R2 ablations untouched. Native Trainer optimizer/loss/scheduler assertions passed, effective_config differences are ONLY3outputpaths; first actual CUDA backward/clip evidence154module gradients, audio projection positive and sub_fc gradient count0. Controller/worker alive",
+    "plan": "33 fresh runs:11settings * seeds2024/42/1111, complete same-pipeline control first for every seed. No historical/current existing MMER checkpoint reused; only original pretrained text. Native snapshot remains byte-pinned, helper SHA pinned; no duplicate launch, no restart/resume or automatic protocol fallback",
+    "alignment": "Same immutable p0B_legacy_replay_20261008 candidate as successful seed2024/42 replays: unchanged native train.py and Trainer core methods, original full model constructor and native MMDataLoader/decode-reencode/context. Two all-wd AdamW groups text1e-5/main4e-4/wd1e-4, foreach=None as native, batch4/epochs120/clip0.1/warmup5778-total38520/MAEearlystop30, MultiTaskLoss task_weights M:1, FP32, no AMP/EMA/text activation recomputation/custom gradient recovery. Four native checkpoints preserved; every row uses the whole secondary_Acc2 test tuple selected only on validation Acc2 Non0. Detailed alignment.json saved in new output",
+    "interventions": "Only model branches/KV inputs changed after common complete initialization; no new random parameters.00 strict no-op;01 self K/V plus uniform routing;02 uniform;03 GLCE global/local zero outputs retains shortcut+secondnorm;04 remove GCMN;05 BSSMoff;06 native contextoff;07 globaloff;08 localoff;09 selfK;10 targetx_defaultV. Source-specific B projection retained for K-self; selfV unused source V projections frozen. Initial state digest checked across same-seed rows; first-step clipped gradients verify disabled branches/M-only. Intervention receipts and effective configs saved perjob",
+    "validation": "13 CPU-only tests pass, CUDA uninitialized; actual original cell Python K/V assembly tested using explicit fake kernel (not a real CUDA kernel equivalence proof). CPU native Trainer3batches with passive gradient observer matches loss, parameter update, LR scheduler and RNG. Prior replay checkpoint effective args read CPU-only, dims768/768/18 verified; text encoder output1024 internally. Old pretokenize_text is False, so not claimed enabled difference; old activation recomputation, custom foreach=False loop/4threads/safe_clip/reference_backward differ",
+    "storage": "All4 native checkpoints perjob retained (~5.4GiB perrun); checked244GiB free, initial210GiB reservation threshold and perjob18GiB safeguard. No deleting checkpoints/archives; failure or insufficient storage stops new queue and waits for user",
+    "historical_boundary": "Exact dated historical source/dependencies/GPU UUID/persistent_workers remain unknown; user already authorized documented candidate. Do not claim exact historical equality or promise identical metrics. Compare new component effects to new same-seed full controls; never substitute historical-best score as paired baseline",
+    "monitor_scope": "GPU0-PPT heartbeat still follows ONLY GPU0 R2 full99completion and original PPT research2 corresponding page. It must not interrupt this GPU1 R1 queue. Token queue is now complete. Old research1 ablation work remains paused19/33; preserve all old and new results. Read new status/console for actual epochs. No new automation created for this queue"
+  },
+  "gpu0_ablation_ppt_followup_20261009": {
+    "authority": "Human: 等GPU0的消融实验跑完后，总结结果，更新到ppt对应位置中。",
+    "automation_id": "gpu0-ppt",
+    "kind": "thread heartbeat",
+    "state": "ACTIVE; checks every30minutes, quiet while no actionable change",
+    "queue": "results/research2_ablations_gpu1_20261006_v3; current physicalGPU0, controller564291",
+    "completion_gate": "Both queue and GPU0 resume receipt phasecomplete; all99plan jobs completed with valid finite tests and completion markers; controller/worker exited. Single completed worker is not sufficient",
+    "analysis": "CPU-only verify all core/extended results, effective configs, three-repeat means/sampleSD and seed-paired differences vs original same-pipeline full00. R2-M six missing combinations excludesTAV; R2-T ten rates. Preserve oldaggregate and evidence; no test-selected seed/weight tuning, no GPU intervention/retries",
+    "ppt": "Update original docs/中期检查_BJTU_20261006/张江伟_两项研究中期检查_北京交通大学风格.pptx research2 ablation corresponding page22; read latestfile, backup first, preserve25pages and BJTU style/editability/assets. Preserve historicalbest and addedcurrentretrain rows; originalablation same-pipeline full00 gets distinct row. Refresh existing ablations and progress; detailed extended results, variability/paired analysis and protocol boundaries in notes/evidence. ArtifactTool-only authoring; render/verify before overwriting requestedpath",
+    "independence": "Do not interrupt GPU0 ablations or GPU1 Token42–47. CPU aggregation/PPT work need not wait GPU1 to be idle. Do not resume research1 paused ablations",
+    "notifications": "Only completion, failure/loss, or required direction; no unchanged/perjob updates. Stop followup after verified PPT delivery, persist completion receipt and avoid repeat edits"
+  },
+  "token_multiseed_42_47_20261009": {
+    "authority": "Human: Token添加训练，seed 42,43,44,45,46,47",
+    "controller_pid": 575280,
+    "entry": "scripts/reproduction_20261009/token_multiseed_queue.py",
+    "output": "results/token_multiseed_42_47_20261009/run_01",
+    "log": "results/reproduction_20261009/token_multiseed_queue.log",
+    "seeds": [42,43,44,45,46,47],
+    "new_training_seeds": [42,43,44,46,47],
+    "reused_seed45": "results/research2_legacy_replay_20261009/run_01/token/seed45; the just-completed candidate result, NOT the older historical best; source/config/selection/test/predictions/checkpoint SHA256 pinned",
+    "dependency": "Research1 seed42 run_02 successful complete, four valid test reports and launcher/worker exit; failure/interruption/loss stops Token queue without retry. Then acquire ONLY results/research2_gpu1.lock, verify GPU1 UUID/driver and no GPU1 compute. GPU0 ablation remains independent and is not interrupted",
+    "native_protocol": "Unmodified frozen research2_legacy_replay_20261009/source/scripts/train_token_input.py through original bootstrap/data cache. Fresh pretrained text only, no old MMER checkpoint resume. Each additional seed gets an exclusive native_seedXX directory; batch8/eval16/epochs60/min20/patience15/lr3e-4, LoRA8/16, input_valid_aware, original smoke and native optimization; validation Token10 mean Acc7 with MAE tie-break. CPU configuration check proves ONLY seed differs from completed45; CUDA uninitialized",
+    "ensemble": "After all five new seeds finish: CPU-only fixed equal prediction ensemble of42/43/44/45/46/47; labels/IDs/sample count and single metrics recomputed against original frozen metric function. No test-selected subset or weighting. Native single-seed outputs remain separate; summary and ensemble.json emitted once",
+    "safety": "7 CPU-only queue tests passed; config preflight passed; plan.json pins original frozen manifest, orchestration helpers and completed45 artifacts. Verify source/input/pretrained/dependency/GPU fingerprints again before training; no installations, frozen-source edits, automatic retries, lowered batch, precision change or checkpoint continuation. Historical exact equality remains unproven candidate",
+    "state_scope": "Controller launch does not mean GPU training has started. Read output/status.json for preflight_cpu/waiting_research1/training/complete/failed and native_seedXX/status.json for actual epoch. No duplicate queue or automatic experiment restart. Prior historical best and all ablation/replay results preserved"
+  },
+  "independent_gpu_restart_20261009": {
+    "authority": "Human: 可以先中断训练，释放锁，让研究二的消融实验占用GPU0，然后在GPU1中重新训练研究一。最新执行安排，覆盖旧的双GPU锁等待记录",
+    "interruption": "研究一seed42 run_01已2026-10-09 16:44:10安全SIGINT中断；launcher558094/worker563353确认退出，所有旧日志与checkpoint保留，status=interrupted_by_user；user_interruption.json记录身份/原状态/退出证据。旧run_01不是成功结果，不从其权重恢复",
+    "research1_active": "GPU1 seed42全新run_02；launcher565576 worker565604；scripts/reproduction_20261009/restart_p0b_seed42_gpu1.py；results/p0B_legacy_replay_20261009_seed42/run_02/status.json及console.log；父日志results/reproduction_20261009/p0b_seed42_run02_gpu1.log",
+    "research1_protocol": "仅新调度器GPU1单卡锁与独立输出run_02；冻结训练源码/原配置/seed42/候选依赖/GPU1 UUID/allocator均不改；原bootstrap原生train从头初始化，仅原预训练文本权重，无旧checkpoint续训；single_gpu_restart.json及manifest_at_queue.json保存新helper指纹，CPU3项单卡安全测试通过",
+    "research2_active": "原GPU0恢复controller564291已取得GPU0锁并派发worker565497 R2-M-12_seed48；原80/99完成记录保留，余19顺序运行；results/research2_ablations_gpu1_20261006_v3/status.json phase=train physical_gpu=0；gpu0_resume_20261009/status.json及日志为迁移证据",
+    "lock_evidence": "检查/proc/564291/fd仅GPU0锁/tmp/mmer_ablation_physical_gpu0.lock；/proc/565576/fd仅GPU1锁results/research2_gpu1.lock。未删除锁文件，旧双GPU锁随原父子进程退出自然释放。两卡可并行，不再需全机compute为空",
+    "preservation": "研究一seed2024最优候选结果、seed42中断日志、历史最优以及研究二已完成消融和全部重训/固定集成都保留；研究一旧消融队列仍paused。不要用新基线测试分数替换旧消融完整对照，不测试集调参",
+    "monitor": "原automation任务工具确认不存在，未重建；实际控制器独立运行。用户问进度时以新run_02及GPU0队列status/log为准，不重复launch。失败不改batch/精度/优化器、不自动续训或重试；报告具体原因等待用户。历史环境完全一致仍不可宣称"
+  },
+  "research2_ablation_gpu0_resume_20261009": {
+    "authority": "Human: 继续进行研究二的消融实验，这次跑GPU0上。覆盖研究二继续保持暂停的旧指令；研究一旧消融仍暂停",
+    "controller_pid": 564291,
+    "entry": "scripts/reproduction_20261009/resume_r2_gpu0.py",
+    "receipt": "results/research2_ablations_gpu1_20261006_v3/gpu0_resume_20261009/status.json",
+    "log": "results/reproduction_20261009/research2_ablation_gpu0_resume.log",
+    "initial_state": "waiting_gpu0_lock; GPU0无compute但GPU1研究一seed42父子进程持有原双GPU锁。正常等待，不绕过锁、不终止任务、不重复启动",
+    "remaining": "原99任务完成80，剩19，首项R2-M-12_seed48；保留原计划顺序、原完整对照与全部已完成结果，原plan.json和source_sha256不修改",
+    "protocol": "仅物理GPU1改GPU0；独立adapter只替换原worker一处设备断言和一处physical_gpu记录。全部模型/训练/损失/seed/batch/LR/选点/评估/NVMe缓存/异步归档逻辑沿用原冻结消融管路，不把新重训测试成绩代入原消融对照",
+    "evidence": "5项CPU安全测试通过，原源码/数据指纹核验通过CUDA未初始化；迁移前status/plan/pause_request/active_worker/nvme_transition独立保存于receipt目录prior_*",
+    "resource_gate": "取得/tmp/mmer_ablation_physical_gpu0.lock并核实GPU0 UUID及无compute进程；只获取GPU0锁，后续不占GPU1。旧双GPU锁由研究一结束后自然释放",
+    "status_scope": "等待时原队列仍paused，receipt waiting_gpu0_lock是最新恢复安排；取得锁后原队列status physical_gpu=0、phase=train，逐任务更新，receipt记录迁移。原GPU1目录名仅保留历史命名",
+    "failure": "失联/失败/指纹变化/剩余任务已有文件时报告，不自动重试、覆盖、改训练参数或恢复研究一旧消融",
+    "monitor": "如以后收到跟进，核查GPU1 seed42和GPU0剩余消融；研究二重训complete不是剩余消融complete。此次尝试更新原automation失败：工具确认automation已不存在，未重建定时任务。实际训练与CPU等待控制器独立运行不依赖heartbeat"
+  },
+  "additional_seed42_20261009": {
+    "authority": "Human: 切换seed 为42 再跑一次。",
+    "controller_pid": 558094,
+    "entry": "scripts/reproduction_20261009/run_p0b_seed42.py",
+    "output": "results/p0B_legacy_replay_20261009_seed42/run_01",
+    "log": "results/reproduction_20261009/p0b_seed42_queue.log",
+    "initial_state": "CPU-only waiting_research2; read output/status.json for current state",
+    "dependency": "Wait existing research2_legacy_replay_20261009/run_01 complete, all eight jobs and valid ensembles, controller/worker exited; then existing GPU locks plus no compute processes",
+    "protocol": "Reuse unchanged p0B_legacy_replay_20261008 frozen native source/config/cache/Mamba and approved candidate environment on physical GPU1; change only seed2024 to42 and isolated output paths. From scratch, original text pretrained only, four validation checkpoints, MAE earlystop, batch4 epochs120 main4e-4 text1e-5 two all-wd AdamW groups wd1e-4 clip0.1 warmup0.15 AMP/EMA/checkpointing off",
+    "validation": "Six CPU-only safety tests passed; config diff only checkpoints_dir/logs_dir/results_dir; frozen source fingerprints pass",
+    "preservation": "Do not edit original frozen snapshot or seed2024 outputs; do not interrupt Research2; original ablation queues remain paused",
+    "failure": "Dependency failure/loss, fingerprint/environment mismatch or training failure stops this run; no automatic retries or changed protocol. No duplicate launch. Historical exact alignment remains unknown but candidate approved"
+  },
+  "latest_user_request": "2026-10-09：启动基线重训，并明确回复是的，除了研究一的，研究二的也进行最优结果的重训。用户同意已列明源码/依赖/物理设备历史证据和persistent_workers未知项的候选。environment_review已user_authorized_candidate，不证明历史完全一致。原两消融队列保持暂停",
+  "active_retraining_20261009": {
+    "research1": "GPU1原生p0B seed2024从头训练已启动，launcher517970 worker518001；输出results/p0B_legacy_replay_20261008/run_01；前两轮与四checkpoint保存正常，未OOM",
+    "research2_queue": "PID519120 CPU-only waiting_r1；results/research2_legacy_replay_20261009/run_01；成功等待R1退出后核验GPU1/空闲/现有排他锁/环境/指纹，再串行执行",
+    "research2_frozen": "experiments/research2_legacy_replay_20261009/manifest.json：86原生源码/配置/Mamba二进制文件及helpers、数据、FacebookAI/roberta-large预训练文件SHA；历史Token7核心文件SHA匹配；Token有效配置和M配置对checkpoint来源参考CPU核验无差异",
+    "order": ["R1_p0B_seed2024", "R2_Token_seed45", "R2_Modality_seed43", "R2_Modality_seed45", "R2_Modality_seed48", "R2_Modality_seed42", "R2_Modality_seed44", "Missing_ensemble_43_45_48", "Full_ensemble_44_42_43"],
+    "research2_protocol": "原生scripts/train_token_input.py和scripts/train.py，无消融适配器；FP32、LoRA8/16、batch8；Token评估batch16、10率验证均值Acc7选优，模态评估batch8/TAV MAE选优；模态仅skip-extra-eval跳过与该场景无关的训练后Token/joint网格报告，训练路径不变",
+    "historical_limit": "完整dated源码/依赖/历史GPU UUID仍未知；授权使用当前coupled_mamba_3和已核对GPU1、expandable_segments:True候选。不能称完全相同历史环境或保证原指标",
+    "preservation": "只加载原本预训练文本权重；新独立目录从头训练；旧最优与旧消融文件不覆盖；固定集成成员不按新测试集重新选seed",
+    "failure_rule": "任何失败停止新队列并报告，不自动更改batch/精度/优化器或重试。R1失败研究二不自动启动；等待用户方向",
+    "cpu_tests": "研究二4项安全测试通过；原生两入口--help与编译通过；所有CPU核验均未初始化CUDA",
+    "followup": "现有automation恢复为重训跟进，仅阶段启动/完成/失败或需人类输入通知；不得启动重复实验或恢复消融"
+  },
+  "active_pause_20261008": {
+    "state": "completed; both works paused, current workers successfully finished; follow-up disabled",
+    "monitor_pid": 463547,
+    "receipt": "/home/zjw/桌面/MMER-Missing/results/reproduction_20261008/pause_after_current_04/status.json",
+    "jobs": ["R1-07_seed42", "R2-T-11_seed46"],
+    "controllers": [323385, 314444],
+    "workers": [453837, 462722],
+    "verified": "2026-10-08 21:31核验：两队列与回执均paused；R1-07_seed42完成53epochs、best12、audited=True，R2-T-11_seed46完成52epochs、selected37；两test.json有效且SHA与回执一致；调度器323385/314444、worker453837/462722和监视器463547均已退出；保留剩余计划",
+    "hold": "不自动启动基线/CUDA诊断；scheduling_policy complete_only，baseline_launch_on_pause=false；监控失败只报告，不重跑消融、不重复启动监视器"
+  },
+  "pause_cancellation_20261008": {
+    "authority": "用户直接撤销上一条暂停安排",
+    "action": "已核实pidfd身份后退出暂停监视器457335，恢复原调度器323385与314444；训练worker未收到任何信号",
+    "receipt": "results/reproduction_20261008/pause_after_current_03/status.json phase=cancelled",
+    "policy": "scheduling_policy.json execution_gate=complete_only；不得使用paused状态进入CUDA诊断或训练",
+    "constraints": "不重启暂停监视器、不迁移GPU、不暂停终止抢占原队列；等待两个完整队列全部完成。下面priority_pause条目仅保留为已撤销的历史操作记录"
+  },
+  "priority_pause_20261008": {
+    "state": "CANCELLED BY LATEST USER; historical record only, not current instructions",
+    "scope": "仅暂停两个消融调度器，当前训练worker不受信号影响；单项成功落盘后退出调度器、保留全部剩余计划",
+    "monitor_pid": 457335,
+    "receipt": "/home/zjw/桌面/MMER-Missing/results/reproduction_20261008/pause_after_current_03/status.json",
+    "captured_current_jobs": ["R1-07_seed42", "R2-M-11_seed48"],
+    "controllers": [323385, 314444],
+    "workers": [453837, 456207],
+    "verified_arming": "两调度器T停止态，worker S/R仍运行；不会继续发下一项。研究二T10在准备中完成并进入M11，暂停点捕获为M11，不中断该项",
+    "earlier_monitor_attempts": "pause_after_current_01/02均在发送任何信号前因Python缺少os.pidfd_open退出；03已使用经自进程验证的Linux x86_64 pidfd syscall成功启动",
+    "guard": "queue_guard.py接受完整完成，或scheduling_policy.json明确授权且pause_request.json验证成功的暂停边界；两边所有已完成结果必须有效，控制器与worker退出，GPU无计算进程，GPU排他锁取得并保留。11项CPU安全测试通过",
+    "environment_review": "仍pending；用户此次改变调度优先级，不等于明确允许用无法核实的历史环境/loader设置替代。未经证据或明确人类同意，不设置user_authorized_candidate",
+    "do_not": "不要恢复消融、不要迁移GPU、不要停止训练worker、不要重复启动暂停监视器或基线",
+    "next": "监视器完成暂停后，先验证资源和历史环境；GPU1优先p0B seed2024从头重跑，之后研究二历史基线。未知环境项仍需用户方向"
+  },
+  "p0b_legacy_restoration_20261008": {
+    "directory": "/home/zjw/桌面/MMER-Missing/experiments/p0B_legacy_replay_20261008",
+    "manifest": "recovery_manifest.json: 88 frozen code/config/evidence/helper files, source and origin SHA256, data and pretrained SHA256",
+    "scope": "Historical effective-branch recovery CANDIDATE, not complete dated Sept18 working tree. Native train blob0e3ad287, indexed trainer0006b54, other core HEADc479b66, current original Mamba55 Python files plus original local selective_scan_cuda binary copied",
+    "preservation": "Historical result JSON and log copied independently, external best_Acc2 checkpoint verified exists and untouched. H-DCD live source and frozen ablation source not overwritten",
+    "protocol": "p0B seed2024, native four checkpoints, MAE earlystop, batch4/120epochs, two all-wd AdamW groups, main4e-4/text1e-5, clip0.1, warmup5778/total38520, MultiTaskLoss M-only, old np.roll context and per-forward decode/reencode, AMP/checkpointing/EMA off",
+    "cpu_validation": "Native --help passes; all restored Python sources compile; dummy CPU Trainer verifies M-only loss, two groups, initial LRs, weight decay and scheduler; original-ID roberta-large and bert-base-uncased tokenizers available offline; no CUDA initialized; source fingerprint verification passes; queue guard5 and launcher safety2 tests pass (including existing-output preservation)",
+    "launcher": "scripts/reproduction_20261008/launch_p0b.py --verify-only or --launch; exclusive new results/p0B_legacy_replay_20261008/run_01; must not use --launch until environment review and BOTH entire queues complete/locks/idle pass; paused state not permitted by latest policy",
+    "environment_review": "environment_review.json state=pending. Historical complete package/driver/GPU UUID evidence and persistent_workers flag unresolved. Do not silently approve or set user_authorized_candidate without direct human authorization; current environment snapshot is not historical proof",
+    "startup": "No new training or CUDA diagnostic started. Both queues still training (R1 17/33, R2 76/99 at latest check). Frozen source preserves native False persistent_workers as candidate, not asserted historical fact",
+    "next": "First resolve evidence or obtain explicit user direction for documented candidate; retain existing work completion/diagnostic constraints; CPU-only safety checks allowed now. Future rerun must be GPU1 with expandable_segments:True and coupled_mamba_3, no old-best checkpoint resume, no batch/optimizer/precision fallback on failure"
+  },
+  "objective": "Locate actual best-vs-ablation discrepancies; fix only evidence-supported causes, then retrain historical best code/config/environment after both entire ablation works finish.",
+  "state": "R1 native candidate training active on GPU1; R2 CPU serial queue waiting for successful R1; explicit candidate authorization recorded; old ablations remain paused",
+  "root_cause": "not yet established",
+  "user_constraints": [
+    "2026-10-09 user explicitly authorizes candidate and both research baselines; R1 active/R2 queued. Do not resume or migrate old ablations, change native training settings on failure, or treat candidate authorization as proof of historical equality",
+    "Historical Python, dependencies, CUDA runtime, driver, physical GPU and precision/runtime settings must be checked and aligned",
+    "Preserve all old results and frozen ablation sources; use exclusive new output directories",
+    "Do not install, downgrade, or change the active environment during ablations"
+  ],
+  "queue_guard": "Latest policy permits verified successful paused boundaries: matching pause authority, plan/test SHA, all completed-job markers/results, dead controllers/workers, existing exclusive GPU locks and no GPU compute processes. Environment review remains required independently; no implicit candidate approval",
+  "automation_id": "automation",
+  "h_dcd_history_audit_20261008": {
+    "scope": "Read-only Git/log/source/CPU checks; H-DCD code and existing jobs untouched",
+    "git_head": "c479b66, 2026-05-30 21:41:23 +08:00; Sept18 best was an uncommitted working-tree state, not this commit",
+    "reflog": "No usable entries returned",
+    "local_editor_history": "VS Code only unrelated README entry; no matching H-DCD source history recovered",
+    "new_recovery_candidate": {
+      "train_py_git_blob": "0e3ad287ef5220e2dde9aedd60cdd01449800acf",
+      "method": "git fsck --no-reflogs --unreachable; git cat-file -p",
+      "behavior": "Exactly May30 train.py plus fourth-checkpoint choices/override/save/test and logging; no AMP, no scheduler_epochs, no joint/target, no sub_loss/aux_cls args passed into model constructor",
+      "compatibility": "Four-checkpoint native entry consistent with Sept18 log; pair with indexed legacy trainer and HEAD classifier/core as candidate, validate rather than assume exact snapshot",
+      "evidence_limit": "Blob has no reliable training-date association. Do not claim recovered complete exact Sept18 source tree"
+    },
+    "intermediate_trainer_blob": "65ac3a59c3a5582eb6523ac066e5fffab5224ffc: AMP and SIMS-restricted multitask, still two-group optimizer; supports staged evolution rather than one single rewrite",
+    "transition_log_evidence": {
+      "loss_amp_observed_by": "MSA_MOSI_20260927_115802.log: 2026-09-27 12:00:27 AMP FP16 and RegressionWithDiscreteCE, TWO optimizer groups",
+      "four_groups_observed_by": "MSA_MOSI_20260927_161326.log: 2026-09-27 16:13:47 four decay/no_decay groups, AMP BF16; older 15:33 log still two groups",
+      "warning": "mtime Sept27 16:10 records latest file write, not the introduction time of all changes; different Sept27 runs also use different configs, do not infer whole metric decline from their comparison"
+    },
+    "persistent_workers": {
+      "current_h_dcd_native_loader": true,
+      "snapshot_native_loader_function": true,
+      "actual_ablation_worker_loader": false,
+      "best_sept18_flag": "UNKNOWN: HEAD May30 false, but no dated Sept18 dataset source was recovered",
+      "cpu_mechanism_check": "Seed2024, shuffle, train1284/valid229, batch4, workers2: first epoch permutations identical, second epoch permutations different when persistence changes",
+      "implication": "Trace loader base_seed consumption and epoch permutations in R1 controlled replay; plausible first-equal/second-different pattern, NOT proven root cause"
+    },
+    "actual_mosi_context_source_comparison": {
+      "data": "Verified NVMe unaligned_50.pkl SHA78e0f8b5ef8f; split has no precomputed context keys",
+      "old_roll_vs_current_id_order_changed_rows": {"train":1097,"valid":196,"test":606},
+      "old_roll_cross_video_rows": {"train":51,"valid":9,"test":30},
+      "warning": "Strong real-input change for TODAY H-DCD vs historical fallback. Actual ablation snapshot still uses historical roll, so cannot explain already-low R1-00 baseline"
+    },
+    "core_comparison": "Current layers/ism.py, models/coupled_mamba3_fork.py, gcmn_fusion.py, context_fusion.py, losses/task_losses.py, utils/metrics.py, utils/seed.py are byte-identical to HEAD May30. Current classifier/text_encoder differ from HEAD and equal ablation snapshot; actual main-only and pretokenizeFalse worker preserve old active branches. Mamba submodule five dirty Python files relate VIM/bidirection support; SISO kernel not Git-modified, do not assume unchanged historical dependency tree from that alone.",
+    "remaining": "No causal GPU replay yet. Prioritize actual loader/RNG trajectory and default-foreach vs False/checkpoint recomputation tests. Historical environment still incomplete. No current frozen source modified."
+  },
+  "historical_r1_launch_evidence": {
+    "script": "/home/zjw/桌面/H-DCD/coupled_BI_Mamba3/scripts/run_p0_rerun.sh",
+    "master_log": "/home/zjw/桌面/H-DCD/coupled_BI_Mamba3/logs/p0_rerun_master.out",
+    "specific_log": "/home/zjw/桌面/H-DCD/coupled_BI_Mamba3/logs/MSA_MOSI_20260918_233755.log",
+    "master_start": "2026-09-18 23:37:49 START p0B seed=2024 attempt1; master header says jobs on GPU1",
+    "conda_environment": "coupled_mamba_3",
+    "CUDA_VISIBLE_DEVICES": "1",
+    "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
+    "PYTHONPATH": "historical project/mamba:historical project",
+    "current_r1_ablation_physical_gpu": 0,
+    "warning": "A concrete execution-condition difference, NOT a proven causal explanation of metric decline. Reproduce R1 on physical GPU1, not GPU0 for convenience."
+  },
+  "environment_evidence": {
+    "current_python": "3.10.20",
+    "current_torch": "2.9.0+cu128",
+    "current_triton": "3.5.0",
+    "current_transformers": "5.8.0",
+    "current_numpy": "1.26.4",
+    "current_cuda_runtime": "12.8",
+    "current_cudnn": "91002",
+    "current_driver": "580.105.08",
+    "current_gpus": "Two NVIDIA GeForce RTX 3070 8192MiB compute8.6",
+    "current_gpu1_uuid": "GPU-342fe223-a24a-15d8-90de-24c492320bd1",
+    "current_gpu0_uuid": "GPU-07abbe75-7a55-4623-70aa-a9572c83957e",
+    "installed_file_mtimes": "torch/version.py and triton/transformers INSTALLER May9; numpy INSTALLER May20; conda history only May15 creation from hdcd",
+    "warning": "File mtimes and unchanged conda history support but do NOT prove unchanged pip packages or drivers since September. No exact historical version/GPU UUID export recovered yet. Token best run.json records only logical cuda:0, not physical GPU."
+  },
+  "confirmed_audit_corrections": [
+    "R1 historical log proves TWO AdamW groups with weight decay on all parameters, not later four no_decay groups",
+    "R1 historical secondary Acc2 selection and current Acc2_nonzero selection equivalent",
+    "R1 current seed2024 baseline predates gradient-repair code; its recovery counters are zero",
+    "R2-M must compare 43/45/48 MAE-checkpoint prediction ensembles, not ensemble vs metric means",
+    "R2-T seed45 has same early LR schedule/rate histograms but first epoch loss differs and epoch2 divergence grows; source hashes for seven archived core files match",
+    "SISO atomic_add sites inspected appear state-gradient branches not active under Input_States=None/return_final_states=False; do not assume atomic nondeterminism is the cause"
+  ],
+  "diagnostics": {
+    "diagnose_r1.py": "Legacy candidate/native repeat/checkpoint/foreach/current loops; imports fixed and CPU --help passed. Legacy trainer recovered Git index object0006b54, NOT complete dated Sept18 code snapshot. Need CPU backend import check, then isolated GPU run. If no-checkpoint native batch4 OOM, report rather than silently shrinking formal batch.",
+    "diagnose_token.py": "Multi-batch native/native-repeat/adapter parity; optimizer-step observers keep private corruption generator continuous. CPU compile/help then resource guard required. No CUDA result yet.",
+    "probe_kernel.py": "Shared SISO same-input output/gradient repeatability; earlier attempted CUDA command was policy-rejected due live-worker contention, not executed. Only rerun once both works complete and GPU idle.",
+    "capture_environment.py": "CPU-only current dependency and Mamba hash capture with nvidia-smi read-only inventory, no CUDA initialization. Current snapshot is not historical proof."
+  },
+  "deferred_diagnostic": "results/reproduction_20261008/token_multistep_01 only waiting status. Waiting process terminated before CUDA; do not call this a completed diagnostic.",
+  "next_steps": [
+    "Gather remaining historical environment evidence/user answer; pin verified physical GPU and allocator/runtime settings before formal retraining",
+    "After BOTH entire works complete, verify every planned job succeeded and controllers/workers exited; acquire existing GPU locks, run controlled parity and trace first concrete mismatch",
+    "Restore evidenced historical path, freeze code/config/data/pretrained/environment manifests and launch from scratch in new result directories",
+    "R1seed2024 on historical GPU1; R2-Tseed45 then required R2-M43/45/48, serialized if same physical GPU required",
+    "If historical environment evidence remains unresolved, report the gap and obtain direction before claiming exact environment reproduction or launching a materially substituted environment"
+  ]
+}
